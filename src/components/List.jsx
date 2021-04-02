@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-
 import { v4 as uuidv4 } from 'uuid';
+
 import Item from './Item';
 
 const List = () => {
   const [text, setText] = useState('');
-  const [list, setList] = useState([]);
+  const [items, setItems] = useState([]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -14,51 +14,51 @@ const List = () => {
 
     const newItem = { id: uuidv4(), text, hasSublist: false };
 
-    setList([...list, newItem]);
+    setItems([...items, newItem]);
     setText('');
   };
 
   const toggleSublist = (index) => {
-    const prevList = [...list];
+    const prevItems = [...items];
 
-    prevList[index].hasSublist = !prevList[index].hasSublist;
-    setList([...prevList]);
+    prevItems[index].hasSublist = !prevItems[index].hasSublist;
+    setItems([...prevItems]);
   };
 
   const handleDelete = (index) => {
-    const newList = list.filter((item, idx) => idx !== index);
-    setList(newList);
+    const newList = items.filter((item, idx) => idx !== index);
+    setItems(newList);
   };
 
   const handleUp = (index) => {
-    setList((prevState) => {
-      const newList = [...prevState];
+    setItems((prevItems) => {
+      const newItems = [...prevItems];
 
-      [newList[index], newList[index - 1]] = [newList[index - 1], newList[index]];
+      [newItems[index], newItems[index - 1]] = [newItems[index - 1], newItems[index]];
 
-      return newList;
+      return newItems;
     });
   };
 
   const handleDown = (index) => {
-    setList((prevState) => {
-      const newList = [...prevState];
+    setItems((prevItems) => {
+      const newItems = [...prevItems];
 
-      [newList[index], newList[index + 1]] = [newList[index + 1], newList[index]];
+      [newItems[index], newItems[index + 1]] = [newItems[index + 1], newItems[index]];
 
-      return newList;
+      return newItems;
     });
   };
 
   return (
     <>
       <ul>
-        {list && list.map((item, index) => (
+        {items && items.map((item, index) => (
           <li key={item.id}>
             <Item
               item={item}
               index={index}
-              listLength={list.length}
+              listLength={items.length}
               toggleSublist={toggleSublist}
               handleDelete={handleDelete}
               handleUp={handleUp}

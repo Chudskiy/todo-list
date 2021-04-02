@@ -14,8 +14,6 @@ const List = () => {
 
     const newItem = { id: uuidv4(), text, hasSublist: false };
 
-    console.log('newItem = ', newItem);
-
     setList([...list, newItem]);
     setText('');
   };
@@ -32,6 +30,26 @@ const List = () => {
     setList(newList);
   };
 
+  const handleUp = (index) => {
+    setList((prevState) => {
+      const newList = [...prevState];
+
+      [newList[index], newList[index - 1]] = [newList[index - 1], newList[index]];
+
+      return newList;
+    });
+  };
+
+  const handleDown = (index) => {
+    setList((prevState) => {
+      const newList = [...prevState];
+
+      [newList[index], newList[index + 1]] = [newList[index + 1], newList[index]];
+
+      return newList;
+    });
+  };
+
   return (
     <>
       <ul>
@@ -40,8 +58,11 @@ const List = () => {
             <Item
               item={item}
               index={index}
+              listLength={list.length}
               toggleSublist={toggleSublist}
               handleDelete={handleDelete}
+              handleUp={handleUp}
+              handleDown={handleDown}
             />
           </li>
         ))}

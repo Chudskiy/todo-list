@@ -12,7 +12,9 @@ const List = () => {
 
     if (!text.trim()) return;
 
-    const newItem = { id: uuidv4(), text, hasSubList: false };
+    const newItem = { id: uuidv4(), text, hasSublist: false };
+
+    console.log('newItem = ', newItem);
 
     setList([...list, newItem]);
     setText('');
@@ -21,8 +23,13 @@ const List = () => {
   const toggleSublist = (index) => {
     const prevList = [...list];
 
-    prevList[index].hasSubItems = !prevList[index].hasSubItems;
+    prevList[index].hasSublist = !prevList[index].hasSublist;
     setList([...prevList]);
+  };
+
+  const handleDelete = (index) => {
+    const newList = list.filter((item, idx) => idx !== index);
+    setList(newList);
   };
 
   return (
@@ -34,6 +41,7 @@ const List = () => {
               item={item}
               index={index}
               toggleSublist={toggleSublist}
+              handleDelete={handleDelete}
             />
           </li>
         ))}

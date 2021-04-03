@@ -68,3 +68,21 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `yarn build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+### Приложение реализует возможность создания бесконечного списка.
+
+Пользователь может:
+* добавлять новый элемент в список,
+* удалять элемент из списка,
+* добавлять вложенный список к элементу списка,
+* удалять вложенный список,
+* перемещать элемент списка вверх по списку,
+* перемещать элемент вниз по списку.
+
+Oграничений на количество вложенных списков и глубину вложенности нет.
+
+### Для запуска приложения следует выполнить команды:
+
+### `yarn install` 
+
+### `yarn start`   
